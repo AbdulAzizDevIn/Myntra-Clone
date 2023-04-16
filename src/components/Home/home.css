@@ -1,0 +1,18 @@
+.budget-buy-container,.top-brands-container{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);   
+}
+.budget-buy, .top-brands{
+    margin: 20px;
+    width: 200px;
+    cursor: pointer;
+}
+.mega-deals-container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.mega-deals{
+    margin: 20px;
+    width: 300px;
+    cursor: pointer;
+}

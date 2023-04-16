@@ -1,0 +1,78 @@
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import InstagramIcon from '@mui/icons-material/Instagram';
+function Footer() {
+    return (
+        <>
+            <div className="footer-container">
+                <div className="footer-1">
+                    <p>ONLINE SHOPPING</p>
+                    <p>Men</p>
+                    <p>Women</p>
+                    <p>Kids</p>
+                    <p>Home & Living</p>
+                    <p>Beauty</p>
+                    <p>Gift Cards</p>
+                    <p>Myntra Insider</p>
+                </div>
+                <div className="footer-2">
+                    <p>CUSTOMER POLICIES</p>
+                    <p>Contact Us</p>
+                    <p>FAQ</p>
+                    <p>T&C</p>
+                    <p>Terms Of Use</p>
+                    <p>Track Orders</p>
+                    <p>Shipping</p>
+                    <p>Cancellation</p>
+                    <p>Returns</p>
+                    <p>Privacy policy</p>
+                    <p>Grievance Officer</p>
+                </div>
+                <div className="footer-3">
+                    <p>EXPERIENCE MYNTRA APP ON MOBILE</p>
+                    <img src="https://i.ibb.co/vsDKXFC/play-store.png" alt="playStore" />
+                    <img src="https://i.ibb.co/z7Wt5pg/app-store.png" alt="appStore" />
+                    <p style={{ fontWeight: "bold", padding: 7, paddingLeft: 2, paddingBottom: 4 }}>KEEP IN TOUCH</p>
+                    <div>
+                        <FacebookIcon />
+                        <TwitterIcon />
+                        <YouTubeIcon />
+                        <InstagramIcon />
+                    </div>
+                </div>
+                <div className='footer-4'>
+                    <div >
+                        <img src="https://i.ibb.co/5TZkPVK/original-removebg-preview.png" alt="" />
+                        <span><span style={{ fontWeight: "bold" }}>100% ORIGINAL</span> guarantee for all products at myntra.com</span>
+                    </div>
+                    <div>
+                        <img src="https://i.ibb.co/C96F6p2/30days-removebg-preview.png" alt="" />
+                        <span><span style={{ fontWeight: "bold" }}>Return within 30days</span> of receiving your order</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className='footer-5'>
+                <div className='p-searches'>
+                    <p style={{ fontWeight: "bold" }}>POPULAR SEARCHES</p>
+                    <p>Makeup | Dresses For Girls | T-Shirts | Sandals Headphones | Babydolls | Blazers For Men | Handbags | Ladies Watches | Bags | Sport Shoes | Reebok Shoes |
+                        Puma Shoes | Boxers | Wallets |Tops | Earrings | Fastrack Watches | Kurtis | Nike | Smart Watches | Titan Watches | Designer |Blouse | Gowns | Rings
+                        | Cricket Shoes | Forever 21 Eye Makeup | Photo | Frames | Punjabi Suits | Bikini Myntra Fashion Show Lipstick Saree Watches | Dresses | Lehenga | Nike
+                        Shoes | Goggles Bras | Suit | Chinos | Shoes | Adidas Shoes | Woodland Shoes | Jewellery | Designers Sarees
+                    </p>
+                </div>
+
+                <div className='about'>
+                    <p>In case of any concern, <a href='https://www.linkedin.com/in/aziz7477/' rel="noreferrer" target='_blank'><span>Contact Us</span></a></p>
+                    <p style={{ fontWeight: "bold" }}>Developed by Abdul Aziz</p>
+                    <p>© 2023 www.myntra.com. All rights reserved.</p>
+                </div>
+            </div>
+        </>
+
+    )
+}
+export default Footer;
+
+

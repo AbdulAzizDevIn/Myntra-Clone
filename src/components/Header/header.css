@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@700&display=swap');
+
+.logo img{
+    height: 53px;
+    cursor: pointer;
+}
+.category{
+    font-size: 13px;
+    font-family: 'News Cycle', sans-serif;
+    color: black;
+    
+}
+.category span{
+    margin:25px;
+    cursor: pointer;
+}
+::placeholder{
+    font-size: 12px;
+    font-family: 'News Cycle', sans-serif;
+}
+.search-container{
+    margin-left: auto;
+    padding-right: 30px;
+}
+.menu-bar{
+    display: flex;
+    font-size: 11px;
+}
+.profile , .wishlist, .bag{
+    color: black;
+    display: flex;
+    margin: 12px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'News Cycle', sans-serif;
+}
+
+

@@ -1,24 +1,84 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import productsContext from "../../context/products.context";
+import bagContext from "../../context/bag.context";
 
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
 import Footer from "../Home/Footer";
+
 
 function ProductPage() {
     const { id } = useParams();
     const { productList } = useContext(productsContext);
     const [currentProduct, setCurrentProduct] = useState(null);
+    const { bagList, setBagList } = useContext(bagContext);
+
     useEffect(() => {
         setCurrentProduct(productList.find((product) => product.id === id))
     }, [id, productList]);
+    useEffect(()=>{
+        localStorage.setItem("bagList", JSON.stringify(bagList))
+    },[bagList])
 
-    const [selectSize, setSelectSize] = useState(null)
+    const [addToBag, setAddToBag] = useState("Add To Bag");
+    const [selectSize, setSelectSize] = useState(null);
+    const [hasSelectSize, setHasSelectSize] = useState(null);
+    const buttonRef = useRef([]);
+    const navigate = useNavigate();
+
+    const handelAddToBag = () => {
+        if (selectSize) {
+            setAddToBag("Go To Bag")
+            if (addToBag === "Go To Bag") {
+                navigate("/bag")
+                return;
+            }
+            const itemAlreadyInCart = bagList.find(item => item.id === currentProduct.id)
+            if (itemAlreadyInCart) {
+                const updateBag = bagList.map((item) => {
+                    if (item.id === currentProduct.id) {
+                        return {
+                            ...item,
+                            quantity: item.quantity + 1
+                        }
+                    }
+                    else {
+                        return item;
+                    }
+                })
+                setBagList(updateBag);
+                return;
+            }
+            setBagList((prev) => {
+                return [...prev, {
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    description: currentProduct.description,
+                    finalPrice: currentProduct.finalPrice,
+                    strickPrice: currentProduct.strickPrice,
+                    discount: currentProduct.discount,
+                    image: currentProduct.otherImages[0],
+                    selectSize: selectSize,
+                    quantity: 1
+                }]
+
+            })
+        }
+        else {
+            setHasSelectSize("Please select a size")
+            buttonRef.current.classList.add("shake")
+            setTimeout(() => {
+                buttonRef.current.classList.remove("shake")
+            }, 500)
+        }
+    }
     const handelSizeClick = (size) => {
         setSelectSize(size)
+        setHasSelectSize("");
     }
 
     return (
@@ -46,10 +106,12 @@ function ProductPage() {
                     <p style={{ fontSize: 11, color: "green", fontWeight: "bold", marginTop: 8 }}>inclusive of all taxes</p>
 
                     <div>
-                        <div style={{ fontWeight: "bold", fontSize: 13 }}>SELECT SIZE</div>
-                        <div className="size-button">
+                        <div style={{ fontWeight: "bold", fontSize: 13, marginBottom: 3 }}>SELECT SIZE</div>
+                        <p style={{ margin: 0, color: "red", fontSize: 12 }}>{hasSelectSize}</p>
+                        <div ref={buttonRef} className="size-button">
                             {currentProduct?.productSize.split(",").map((size) => (
                                 <button
+                                    key={productList.id}
                                     className={selectSize === size ? "selected" : ""}
                                     onClick={() => handelSizeClick(size)}>{size}
                                 </button>
@@ -58,7 +120,7 @@ function ProductPage() {
                     </div>
 
                     <div className="bag-wish-button">
-                        <button><ShoppingBagOutlinedIcon /> ADD TO BAG</button>
+                        <button onClick={handelAddToBag}>{addToBag === "Add To Bag" ? <ShoppingBagOutlinedIcon /> : <ArrowForwardIcon />}{addToBag}</button>
                         <button style={{ background: "white", color: "black", border: "1px solid grey" }}>
                             <FavoriteBorderOutlinedIcon style={{ color: "#fd3e6c" }} />
                             WISHLIST</button>
@@ -90,7 +152,7 @@ function ProductPage() {
 
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 

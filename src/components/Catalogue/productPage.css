@@ -1,6 +1,7 @@
 .product-page{
     
     padding: 8%;
+    padding-top: 85px;
     padding-bottom: 3%;
     
     display: flex;
@@ -45,6 +46,28 @@
 .size-button button.selected{
     border: 2px solid #d61b60;
     color: #d61b60;
+}
+.shake{
+    animation: shake 0.5s;
+}
+
+@keyframes shake{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(-10px) ;
+    }
+    50%{
+        transform: translateX(10px);
+    }
+    75%{
+        transform: translateX(-10px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+
 }
 .bag-wish-button{
     display: flex;

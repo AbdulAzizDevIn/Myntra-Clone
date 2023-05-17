@@ -10,7 +10,7 @@ import MenuBar from "./MenuBar";
 
 const StyledHeader = styled(AppBar)`
     background:#ffffff;
-    height:80px;
+    height:70px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 `
 

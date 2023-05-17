@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import bagContext from "../../context/bag.context";
 import { useNavigate } from "react-router-dom";
 
+import CloseIcon from '@mui/icons-material/Close';
+
 
 function Bag() {
     const { bagList, setBagList } = useContext(bagContext);
@@ -9,27 +11,60 @@ function Bag() {
 
     const [totalMrp, setTotalMrp] = useState(0);
     const [discount, setDiscount] = useState(0);
-    const [totalAmount,setTotalAmount] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
 
-    useEffect(()=>{
+
+    useEffect(() => {
         const storageBagList = localStorage.getItem("bagList")
-        if(storageBagList){
+        if (storageBagList) {
             setBagList(JSON.parse(storageBagList));
         }
-        
-    },[setBagList])
 
-    useEffect(()=>{
-        setTotalMrp(bagList.reduce((acc, item) => acc + Number(item.strickPrice), 0))
-        setDiscount(bagList.reduce((acc,item)=> acc+ Number(item.strickPrice) - Number(item.finalPrice),0))
-        setTotalAmount(bagList.reduce((acc,item)=> acc + Number(item.finalPrice),0))
-    },[bagList])
+    }, [setBagList])
 
-    const removeFromBag = (itemId)=>{
-        let updatedBagList = bagList.filter((item)=> item.id !== itemId)
+
+    useEffect(() => {
+        setTotalMrp(bagList.reduce((acc, item) => acc + Number(item.strickPrice * item.quantity), 0))
+        setDiscount(bagList.reduce((acc, item) => acc + Number(item.strickPrice * item.quantity) - Number(item.finalPrice * item.quantity), 0))
+        setTotalAmount(bagList.reduce((acc, item) => acc + Number(item.finalPrice * item.quantity), 0))
+    }, [bagList])
+
+    const removeFromBag = (itemId) => {
+        let updatedBagList = bagList.filter((item) => item.id !== itemId)
         setBagList(updatedBagList);
-        localStorage.setItem("bagList",JSON.stringify(updatedBagList))
+        localStorage.setItem("bagList", JSON.stringify(updatedBagList))
     }
+    const updateQuantity = (itemId, newQuantity) => {
+        const updateBagList = bagList.map((item) => {
+            if (itemId === item.id) {
+                return { ...item, quantity: newQuantity };
+            }
+            else {
+                return item;
+            }
+        })
+        setBagList(updateBagList);
+        localStorage.setItem("bagList", JSON.stringify(updateBagList))
+    }
+
+    const handelQtyInc = (itemId, currentQyt) => {
+        if (currentQyt < 5) {
+            const newQuantity = currentQyt + 1;
+            updateQuantity(itemId, newQuantity);
+        }
+
+    }
+
+    const handelQtyDec = (itemId, currentQyt) => {
+        if (currentQyt > 1) {
+            const newQuantity = currentQyt - 1;
+            updateQuantity(itemId, newQuantity);
+        }
+    }
+
+
+
+
     return (
         <>
             <div className="bag-header">
@@ -47,57 +82,80 @@ function Bag() {
                             <div className="address">
                                 <div>
                                     <p>Deliver to: <span>Abdul Aziz,742140</span></p>
-                                    <p>Chandpur,Kolla,Kandi</p>
+                                    <p>Chandpur,Kolla,Kandi,Murshidabad</p>
                                 </div>
                                 <div>
                                     <button>CHANGE ADDRESS</button>
                                 </div>
                             </div>
 
-                            <div className="offer">
+                            <div className="bag-offers">
                                 <div>Available Offers</div>
-                                <p>10% Instant Discount on IndusInd Bank Debit Cards on a min spend Of Rs 2,500. TCA</p>
+                                <ul>
+                                    <li>10% Instant Discount on IndusInd Bank Debit Cards on a min spend Of Rs 2,500. TCA</li>
+                                </ul>
+
                             </div>
 
-                            <div>
+                            <div className="convi-fee">
                                 <img src="https://constant.myntassets.com/checkout/assets/img/ship-free.webp" alt="" /> Yay! <span>No convenience fee</span> on this order.
                             </div>
 
-                            <div className="bag-card">
+                            <div className="display-card">
                                 {bagList.map((item, index) => (
-                                    <div key={index}>
-                                        <img src={item.image} alt={item.name} />
-                                        <h2 style={{ color: "red" }}>{item.name}</h2>
-                                        <p>{item.description}</p>
-                                        <p>Size: {item.selectSize}</p>
-                                        <p>Quantity: {item.quantity}</p>
-                                        <p>Price: {item.finalPrice}</p>
-                                        <p>{item.strickPrice}</p>
-                                        <p>Discount: {item.discount}%</p>
-                                        <button onClick={()=>removeFromBag(item.id)}>Remove</button>
+                                    <div className="bag-card" key={index}>
+                                        <div style={{ display: "flex" }}>
+                                            <div>
+                                                <img src={item.image} alt={item.name} />
+                                            </div>
+                                            <div>
+                                                <div style={{ paddingBottom: "5px", fontWeight: "bold" }}>{item.name}</div>
+                                                <p>{item.description}</p>
+                                                <p style={{ fontWeight: "bold" }}>Size: {item.selectSize}</p>
+                                                <p style={{ fontWeight: "bold" }}>Qty:
+                                                    <button  onClick={() => handelQtyDec(item.id, item.quantity)}>-</button>
+                                                    {item.quantity}
+                                                    <button  onClick={() => handelQtyInc(item.id, item.quantity)}>+</button>
+                                                </p>
+                                                <div className="bag-prices">
+                                                    <p style={{ fontWeight: "bold" }}>₹{item.finalPrice * item.quantity}</p>
+                                                    <p style={{ textDecoration: "line-through" }}>₹{item.strickPrice * item.quantity}</p>
+                                                    <p style={{ color: "#d61b60" }}>{item.discount}%OFF</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <CloseIcon style={{ cursor: "pointer" }} onClick={() => removeFromBag(item.id)} />
+                                        </div>
+
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         <div className="total">
-                            <div>PRICE DETAILS ({bagList.length} items)</div>
-                            <div>
+                            <div style={{ fontWeight: "bold" }}>PRICE DETAILS ({bagList.length} items)</div>
+                            <div id="total-all">
                                 <p>Total MRP</p>
-                                <p>{totalMrp}</p>
+                                <p>₹{totalMrp}</p>
                             </div>
-                            <div>
+                            <div id="total-all">
                                 <p>Discount on MRP</p>
-                                <p>{discount}</p>
+                                <p style={{ color: "green" }}>-₹{discount}</p>
                             </div>
-                            <div>
-                                <p>Convenience Fee <span>Know More</span></p>
-                                <p>₹99 <span>FREE</span></p>
+                            <div id="total-all">
+                                <p>Convenience Fee</p>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <p style={{ textDecoration: "line-through" }}>₹99 </p>
+                                    <span style={{ color: "green" }}> FREE</span>
+                                </div>
                             </div>
-                            <div>
-                                <p>TOTAL AMOUNT</p>
-                                <p>₹{totalAmount}</p>
+                            <div id="total-all" style={{ borderTop: "1px solid rgb(211, 211, 211)" }}>
+                                <p style={{ fontWeight: "bold" }}>Total Amount</p>
+                                <p style={{ fontWeight: "bold" }}>₹{totalAmount}</p>
                             </div>
+                            <button>PLACE ORDER</button>
                         </div>
 
                     </div>

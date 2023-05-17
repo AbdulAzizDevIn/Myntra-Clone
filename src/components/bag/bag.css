@@ -77,11 +77,132 @@
 .bag-main{
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 40px;
 }
 .address{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid rgb(211, 211, 211);
+    margin: 20px;
+    margin-top: 0;
+    padding: 10px;
+    font-size: 11px;
+    border-radius: 3px;
+}
+.address p{
+    margin: 2px;
+}
+.address span{
+    font-weight: bold;
+}
+.address button{
+    padding: 8px;
+    font-size: 9px;
+    font-weight: bold;
+    background: transparent;
+    color: #FF3F6C;
+    border: 1px solid #FF3F6C;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.address button:hover{
+    background: #ffe4ea;
+}
+.bag-offers {
+    border: 1px solid rgb(211, 211, 211);
+    margin: 20px;
+    margin-top: 0;
+    padding: 10px;
+    
+    font-size: 11px;
+    border-radius: 3px;
+}
+.bag-offers div{
+    font-weight: bold;
+}
+.convi-fee{
+    margin: 20px;
+    margin-top: 0;
+    margin-bottom: 40px;
+    padding: 10px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 3px;
+    font-size: 11px;
+}
+.convi-fee img{
+    width: 30px;
+}
+.convi-fee span{
+    font-weight: bold;
+}
+.display-card{
+    border: 1px solid rgb(211, 211, 211);
+    margin: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.bag-card{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding-bottom: 5px;
+    font-size: 11px;
+    border-bottom: 1px solid rgb(211, 211, 211);
+    
+}
+.bag-card img {
+    width: 150px;
+    padding-right: 5px;
+}
+.bag-card p{
+    margin: 0;
+    padding-bottom: 5px;
+}
+.bag-card button{
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid #FF3F6C;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.bag-card button:hover{
+    background: #ffe4ea;
+}
+.bag-prices{
+    display: flex;
+}
+.bag-prices p{
+    padding-right: 5px;
 
+}
+
+
+.total{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgb(211, 211, 211);
+    padding-left: 10px;
+    font-size: 11px;
+    width: 40vh;
+}
+.total #total-all{
+    display: flex;
+    justify-content: space-between;
+}
+.total p{
+   margin:5px 0 ;
+}
+.total button{
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    background: #FF3F6C;
+    border: 0;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
 }

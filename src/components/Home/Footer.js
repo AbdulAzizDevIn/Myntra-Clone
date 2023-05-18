@@ -34,11 +34,11 @@ function Footer() {
                     <img src="https://i.ibb.co/vsDKXFC/play-store.png" alt="playStore" />
                     <img src="https://i.ibb.co/z7Wt5pg/app-store.png" alt="appStore" />
                     <p style={{ fontWeight: "bold", padding: 7, paddingLeft: 2, paddingBottom: 4 }}>KEEP IN TOUCH</p>
-                    <div>
-                        <FacebookIcon />
-                        <TwitterIcon />
-                        <YouTubeIcon />
-                        <InstagramIcon />
+                    <div >
+                        <FacebookIcon style={{fontSize:30}} />
+                        <TwitterIcon style={{fontSize:30}} />
+                        <YouTubeIcon style={{fontSize:30}} />
+                        <InstagramIcon style={{fontSize:30}}/>
                     </div>
                 </div>
                 <div className='footer-4'>

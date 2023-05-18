@@ -162,8 +162,8 @@ function Bag() {
                 ) : (
                     <div className="bag-empty">
                         <img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp" alt="emptyBag" />
-                        <p style={{ fontWeight: "bold", marginBottom: 0 }}>Hey, it feels so light!</p>
-                        <p style={{ marginTop: 1, fontSize: 12 }}>There is nothing in your bag.Let's add some items.</p>
+                        <p style={{ fontWeight: "bold", marginBottom: 0,fontSize: 20 }}>Hey, it feels so light!</p>
+                        <p style={{ marginTop: 1, fontSize: 15 }}>There is nothing in your bag.Let's add some items.</p>
                         <button onClick={() => navigate("/catalogue")}>ADD ITEMS</button>
                     </div>
                 )

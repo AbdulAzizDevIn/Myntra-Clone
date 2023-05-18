@@ -17,13 +17,13 @@ function Catalogue() {
                 <div className="gender">
                     <label htmlFor="gender" style={{ padding: "10px 5px", fontWeight: "bold" }}>Gender</label>
                     <div>
-                        <Radio size="small" value="all"
+                        <Radio size="medium" value="all"
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                             checked={gender === "all"}
                             onClick={handelGender}
@@ -31,13 +31,13 @@ function Catalogue() {
                         <label htmlFor="men">All</label>
                     </div>
                     <div>
-                        <Radio size="small" value="men"
+                        <Radio size="medium" value="men"
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                             checked={gender === "men"}
                             onClick={handelGender}
@@ -45,13 +45,13 @@ function Catalogue() {
                         <label htmlFor="men">Men</label>
                     </div>
                     <div>
-                        <Radio size="small" value="women"
+                        <Radio size="medium" value="women"
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                             checked={gender === "women"}
                             onClick={handelGender}
@@ -63,104 +63,104 @@ function Catalogue() {
                 <div className="categories">
                     <label htmlFor="categories" style={{ padding: "10px 5px", fontWeight: "bold" }}>Brands</label>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">HERE&NOW</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="folded-sleeves">HIGHLANDER</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">Roadster</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">Dennis Lingo</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">WROGN</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">Mast & Harbour</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">SASSAFRAS</label>
                     </div>
                     <div>
-                        <Checkbox size="small"
+                        <Checkbox size="medium"
                             
                             sx={{
                                 color: pink[800],
                                 '&.Mui-checked': {
                                     color: pink[600],
                                 },
-                                padding: "3px"
+                                padding: "5px"
                             }}
                         />
                         <label htmlFor="white">Kook N Keech</label>

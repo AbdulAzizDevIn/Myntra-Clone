@@ -17,7 +17,7 @@ const responsive = {
   };
 function Banner(){
     return(
-        <div style={{marginTop:100}}>
+        <div style={{marginTop:110}}>
             <Carousel 
             responsive={responsive} 
             swipeable={false}

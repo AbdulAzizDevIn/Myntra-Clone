@@ -92,22 +92,22 @@ function ProductPage() {
                     }
                 </div>
                 <div className="product-details">
-                    <div style={{ fontWeight: "bold" }}>{currentProduct?.name}</div>
+                    <div style={{ fontWeight: "bold",fontSize:20 }}>{currentProduct?.name}</div>
 
                     <p className="des">{currentProduct?.description}</p>
 
                     <div >
-                        <span style={{ fontWeight: "bold" }}>₹{currentProduct?.finalPrice}  </span>
-                        <span style={{ fontSize: 14 }}> MRP </span>
-                        <span style={{ textDecoration: "line-through" }}>₹{currentProduct?.strickPrice}</span>
-                        <span style={{ color: "#d61b60" }}> ({currentProduct?.discount}% OFF)</span>
+                        <span style={{ fontWeight: "bold",fontSize:20 }}>₹{currentProduct?.finalPrice}  </span>
+                        <span style={{ fontSize: 17 }}> MRP </span>
+                        <span style={{ textDecoration: "line-through",fontSize:20 }}>₹{currentProduct?.strickPrice}</span>
+                        <span style={{ color: "#d61b60",fontSize:20 }}> ({currentProduct?.discount}% OFF)</span>
                     </div>
 
-                    <p style={{ fontSize: 11, color: "green", fontWeight: "bold", marginTop: 8 }}>inclusive of all taxes</p>
+                    <p style={{ fontSize: 14, color: "green", fontWeight: "bold", marginTop: 8 }}>inclusive of all taxes</p>
 
                     <div>
-                        <div style={{ fontWeight: "bold", fontSize: 13, marginBottom: 3 }}>SELECT SIZE</div>
-                        <p style={{ margin: 0, color: "red", fontSize: 12 }}>{hasSelectSize}</p>
+                        <div style={{ fontWeight: "bold", fontSize: 16, marginBottom: 3 }}>SELECT SIZE</div>
+                        <p style={{ margin: 0, color: "red", fontSize: 15 }}>{hasSelectSize}</p>
                         <div ref={buttonRef} className="size-button">
                             {currentProduct?.productSize.split(",").map((size) => (
                                 <button
@@ -127,7 +127,7 @@ function ProductPage() {
                     </div>
 
                     <div style={{ paddingTop: 20 }}>
-                        <div style={{ fontSize: 13, fontWeight: "bold", display: "flex", alignItems: "center" }}>
+                        <div style={{ fontSize: 16, fontWeight: "bold", display: "flex", alignItems: "center" }}>
                             DELIVERY OPTIONS
                             <LocalShippingOutlinedIcon style={{ paddingLeft: 8 }} />
                         </div>
@@ -141,13 +141,13 @@ function ProductPage() {
 
                     <div className="offers">
                         <p>100% Original Products</p>
-                        <div style={{ paddingTop: 10 }}>BEST OFFERS<SellOutlinedIcon style={{ fontSize: 15 }} /></div>
+                        <div style={{ paddingTop: 10 }}>BEST OFFERS<SellOutlinedIcon style={{ fontSize: 18 }} /></div>
                         <p>This product is already at its best price</p>
                         <div>Up To Rs 500 Cashback on CRED pay transactions.</div>
                         <ul>
                             <li>Min Spend Rs 1,000. Available only on Android Devices.</li>
                         </ul>
-                        <p style={{ fontWeight: "bold", fontSize: 10, color: "#fd3e6c" }}>Terms & Condition</p>
+                        <p style={{ fontWeight: "bold", fontSize: 13, color: "#fd3e6c" }}>Terms & Condition</p>
                     </div>
 
                 </div>

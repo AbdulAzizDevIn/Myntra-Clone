@@ -1,10 +1,11 @@
 .catalogue {
-    padding-top: 85px;
+    padding-top: 110px;
     display: flex;
     font-family: 'News Cycle', sans-serif;
 }
 
 .catalogue-menu {
+    
     position: fixed;
     padding: 1% 4% 4% 5%;
     width: 20vh;
@@ -15,13 +16,13 @@
 .gender {
     display: flex;
     flex-direction: column;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .categories {
     display: flex;
     flex-direction: column;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .display-products {
@@ -40,7 +41,7 @@
 
 .dropdown {
     padding: 10px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: bold;
     color: #333;
     background-color: #fff;
@@ -53,9 +54,10 @@
 .all-card{
     padding-top: 1%;
     padding-bottom: 1%;
+    padding-left: 4%;
     display: flex;
     flex-direction: row;
-    row-gap: 20px;
+    row-gap: 30px;
     flex-wrap: wrap;
     
 }

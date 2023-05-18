@@ -11,16 +11,16 @@ function MenuBar(){
     return (
         <div className="menu-bar">
             <div className='profile'>
-                <PersonOutlineOutlinedIcon style={{fontSize:"20px"}} />
+                <PersonOutlineOutlinedIcon style={{fontSize:"25px"}} />
                 <div>Profile</div>
 
             </div>
             <div className="wishlist">
-                <FavoriteBorderOutlinedIcon style={{fontSize:"20px"}}/>
+                <FavoriteBorderOutlinedIcon style={{fontSize:"25px"}}/>
                 <div>Wishlist</div>
             </div>
             <div className='bag' onClick={()=>{navigate("/bag")}}>
-               <ShoppingBagOutlinedIcon  style={{fontSize:"20px"}}/> 
+               <ShoppingBagOutlinedIcon  style={{fontSize:"25px"}}/> 
                 <div>Bag { bagList.length}</div>                
             </div>
             

@@ -31,14 +31,18 @@ function Footer() {
                 </div>
                 <div className="footer-3">
                     <p>EXPERIENCE MYNTRA APP ON MOBILE</p>
-                    <img src="https://i.ibb.co/vsDKXFC/play-store.png" alt="playStore" />
-                    <img src="https://i.ibb.co/z7Wt5pg/app-store.png" alt="appStore" />
+                    <a href="https://play.google.com/store/apps/details?id=com.myntra.android&hl=en_IN&gl=US" rel="noreferrer" target='_blank'>
+                        <img src="https://i.ibb.co/vsDKXFC/play-store.png" alt="playStore" />
+                    </a>
+                    <a href="https://apps.apple.com/in/app/myntra-fashion-shopping-app/id907394059" rel="noreferrer" target='_blank'>
+                        <img src="https://i.ibb.co/z7Wt5pg/app-store.png" alt="appStore" />
+                    </a>
                     <p style={{ fontWeight: "bold", padding: 7, paddingLeft: 2, paddingBottom: 4 }}>KEEP IN TOUCH</p>
                     <div >
-                        <FacebookIcon style={{fontSize:30}} />
-                        <TwitterIcon style={{fontSize:30}} />
-                        <YouTubeIcon style={{fontSize:30}} />
-                        <InstagramIcon style={{fontSize:30}}/>
+                        <FacebookIcon style={{ fontSize: 30 }} />
+                        <TwitterIcon style={{ fontSize: 30 }} />
+                        <YouTubeIcon style={{ fontSize: 30 }} />
+                        <InstagramIcon style={{ fontSize: 30 }} />
                     </div>
                 </div>
                 <div className='footer-4'>

@@ -86,8 +86,8 @@ function ProductPage() {
             <div className="product-page">
                 <div className="product-img">
                     {
-                        currentProduct?.otherImages.map((image) => (
-                            <img src={image} alt={currentProduct?.name} />
+                        currentProduct?.otherImages.map((image,index) => (
+                            <img key={index} src={image} alt={currentProduct?.name} />
                         ))
                     }
                 </div>

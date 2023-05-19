@@ -29,6 +29,11 @@ function Bag() {
         setTotalAmount(bagList.reduce((acc, item) => acc + Number(item.finalPrice * item.quantity), 0))
     }, [bagList])
 
+    const handleClickLogo = () => {
+        navigate("/");
+        window.location.reload();
+    };
+
     const removeFromBag = (itemId) => {
         let updatedBagList = bagList.filter((item) => item.id !== itemId)
         setBagList(updatedBagList);
@@ -68,7 +73,7 @@ function Bag() {
     return (
         <>
             <div className="bag-header">
-                <img src="https://www.freepnglogos.com/uploads/logo-myntra-png/myntra-logo-m-png-3.png" alt="logo" />
+                <img onClick={handleClickLogo} src="https://www.freepnglogos.com/uploads/logo-myntra-png/myntra-logo-m-png-3.png" alt="logo" />
                 <p>BAG <span> -------------------- </span> PAYMENT</p>
                 <div>
                     <img src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png" alt="secure" />

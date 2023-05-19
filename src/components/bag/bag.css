@@ -6,8 +6,9 @@
     border-bottom: 1px solid rgb(201, 200, 200) ;
 }
 .bag-header img{
-    width: 150px;
+    width: 170px;
     padding: 5px  30px;
+    cursor: pointer;
 }
 .bag-header div img{
     width: 28px;

@@ -74,7 +74,10 @@ function Bag() {
         <>
             <div className="bag-header">
                 <img onClick={handleClickLogo} src="https://www.freepnglogos.com/uploads/logo-myntra-png/myntra-logo-m-png-3.png" alt="logo" />
-                <p>BAG <span> -------------------- </span> PAYMENT</p>
+                <div>
+                    <p style={{color:"#46bda7",textDecoration:"underline",textDecorationThickness:"2px"}}>BAG </p> -------------------- <p> PAYMENT</p>
+                </div>
+                
                 <div>
                     <img src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png" alt="secure" />
                     <p>100% SECURE</p>
@@ -160,7 +163,7 @@ function Bag() {
                                 <p style={{ fontWeight: "bold" }}>Total Amount</p>
                                 <p style={{ fontWeight: "bold" }}>₹{totalAmount}</p>
                             </div>
-                            <button>PLACE ORDER</button>
+                            <button onClick={()=>navigate("/payment")}>PLACE ORDER</button>
                         </div>
 
                     </div>

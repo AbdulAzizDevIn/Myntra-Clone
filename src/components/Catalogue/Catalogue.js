@@ -9,9 +9,11 @@ import Checkboxes from "./CheckBoxes";
 function Catalogue() {
     const { productList } = useContext(productsContext);
 
-    const [filterProducts, setFilterProducts] = useState(productList);
+    const [filterProducts, setFilterProducts] = useState([]);
 
     const [gender, setGender] = useState("all");
+    const [priceFilter, setPriceFilter] = useState("option1");
+   
     const handelGender = (event) => {
         const value = event.target.value;
         setGender(value)
@@ -21,23 +23,66 @@ function Catalogue() {
         else {
             const filteredData = productList.filter((item) => item.gender === value)
             setFilterProducts(filteredData);
-            setGender(value)
+
         }
 
     }
 
     const handelCheckBox = (e) => {
         const { checked, value } = e.target;
-        if (checked) {
-            setFilterProducts(productList.filter((item) => item.name === value))
-        }
-        else if(!checked){
+        productList.map((item)=>{
+            if(checked){
+                if(value === item.name){
+                    setFilterProducts([...filterProducts].filter((item)=>{
+                        return item.name === value;
+    
+                    }))
+                } 
+                
+            }
+            else{
+                setFilterProducts(productList)
+                setGender("all");
+
+            }
+        })
+    }
+
+    const handelPriceFilter=(e)=>{
+        const value = e.target.value;
+        if(value === "option1"){
             setFilterProducts(productList);
         }
+        else if(value === "option2"){
+            const sortedProducts = [...filterProducts].sort((a,b)=>{
+                return a.finalPrice - b.finalPrice
+            })
+            setFilterProducts(sortedProducts)
+        }
+        else if(value === "option3"){
+            const sortedProducts = [...filterProducts].sort((a,b)=>{
+                return b.finalPrice - a.finalPrice
+            })
+            setFilterProducts(sortedProducts)
+        }
+        else{
+            const sortedProducts = [...filterProducts].sort((a,b)=>{
+                return b.discount - a.discount
+            })
+            setFilterProducts(sortedProducts)
+        }
+        setPriceFilter(value)
+    }
+
+    const handelClearAll = () => {
+        setFilterProducts(productList);
+        setGender("all");
+        setPriceFilter("option1")
     }
 
     useEffect(() => {
-        setFilterProducts(productList)
+        setFilterProducts(productList);
+        
     }, [productList])
 
 
@@ -45,6 +90,10 @@ function Catalogue() {
     return (
         <div className="catalogue">
             <div className="catalogue-menu">
+                <div className="clear-filter">
+                    <p>Filters</p>
+                    <button onClick={handelClearAll}>CLEAR All</button>
+                </div>
                 <div className="gender">
                     <label htmlFor="gender" style={{ padding: "10px 5px", fontWeight: "bold" }}>Gender</label>
                     <div>
@@ -95,12 +144,12 @@ function Catalogue() {
                     <label htmlFor="categories" style={{ padding: "10px 5px", fontWeight: "bold" }}>Brands</label>
                     <Checkboxes handelCheckBox={handelCheckBox} brandName="HERE&NOW" />
                     <Checkboxes handelCheckBox={handelCheckBox} brandName="HIGHLANDER" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Roadster" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Dennis Lingo" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="WROGN" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Mast & Harbour" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="SASSAFRAS" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Kook N Keech" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Roadster"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Dennis Lingo"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="WROGN"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Mast & Harbour"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="SASSAFRAS"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Kook N Keech"/>
                 </div>
             </div>
 
@@ -108,15 +157,12 @@ function Catalogue() {
             <div className="display-products">
                 <div className="dropdown-container">
 
-                    <select className="dropdown" >
+                    <select className="dropdown" onChange={handelPriceFilter}>
                         Sort by:
                         <option value="option1">Recommended</option>
-                        <option value="option2">Whats New</option>
-                        <option value="option3">Popularity</option>
-                        <option value="option3">Better Discount</option>
+                        <option value="option2">Price: Low To High</option>
                         <option value="option3">Price: High To Low</option>
-                        <option value="option3">Price: Low To High</option>
-                        <option value="option3">Customer Rating</option>
+                        <option value="option4">Better Discount</option>
                     </select>
                 </div>
                 <div className="all-card">

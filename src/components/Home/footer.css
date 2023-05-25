@@ -55,3 +55,23 @@
 .footer-5 a{
     text-decoration: none;
 }
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .footer-container {
+      padding: 5% 5%;
+      flex-wrap: wrap;
+    }
+  
+    .footer-1,
+    .footer-2,
+    .footer-3 {
+      flex-basis: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .footer-5 {
+      padding: 1% 5% 2% 5%;
+    }
+  }

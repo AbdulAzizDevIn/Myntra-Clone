@@ -116,3 +116,25 @@
 .offers ul{
     font-size: 15px;
 }
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .product-page {
+      flex-direction: column;
+    }
+  
+    .product-img {
+      width: 350px;
+    }
+  
+    .product-details {
+      width: 100%;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+    .bag-wish-button button{
+        width: 100px;
+        height: 70px;
+    }
+  }

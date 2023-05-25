@@ -1,10 +1,11 @@
 import { pink } from "@mui/material/colors";
 import { Checkbox } from "@mui/material";
-function Checkboxes({handelCheckBox,brandName}) {
-    console.log(brandName);
+function Checkboxes({handelCheckBox,brandName,check}) {
+    
     return (
         <div>
             <Checkbox size="medium"
+                checked={check}
                 value={brandName}
                 onClick={handelCheckBox}
                 sx={{

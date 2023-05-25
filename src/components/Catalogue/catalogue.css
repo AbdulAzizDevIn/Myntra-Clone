@@ -4,8 +4,27 @@
     font-family: 'News Cycle', sans-serif;
 }
 
+.clear-filter {
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clear-filter button {
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    color: #d61b60;
+    border-radius: 5px;
+}
+
 .catalogue-menu {
-    
+
     position: fixed;
     padding: 1% 4% 4% 5%;
     width: 20vh;
@@ -36,7 +55,7 @@
     align-items: center;
     justify-content: flex-end;
     margin-top: 20px;
-    margin-right:7% ;
+    margin-right: 7%;
 }
 
 .dropdown {
@@ -51,7 +70,8 @@
 .dropdown:hover {
     border-color: #666;
 }
-.all-card{
+
+.all-card {
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 4%;
@@ -59,5 +79,16 @@
     flex-direction: row;
     row-gap: 30px;
     flex-wrap: wrap;
-    
+
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    .display-products {
+        padding-left: 10rem;
+    }
+    .catalogue-menu{
+        width: 15vh;
+    }
 }

@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import productsContext from "../../context/products.context";
 import bagContext from "../../context/bag.context";
-import wishlistContext from "../../context/wishlist.context";
 
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
@@ -18,7 +17,6 @@ function ProductPage() {
     const { productList } = useContext(productsContext);
     const [currentProduct, setCurrentProduct] = useState(null);
     const { bagList, setBagList } = useContext(bagContext);
-    const {wishlist,setWishlist} = useContext(wishlistContext);
 
     useEffect(() => {
         setCurrentProduct(productList.find((product) => product.id === id))
@@ -84,25 +82,6 @@ function ProductPage() {
         setHasSelectSize("");
     }
 
-    const handelWishlist =()=>{
-        setWishlist((prev)=>{
-            return [
-                ...prev,{
-                    id: currentProduct.id,
-                    name: currentProduct.name,
-                    description: currentProduct.description,
-                    finalPrice: currentProduct.finalPrice,
-                    strickPrice: currentProduct.strickPrice,
-                    discount: currentProduct.discount,
-                    image: currentProduct.otherImages[0],
-                    selectSize: selectSize,
-                    quantity: 1
-                }
-            ]
-        })
-    }
-
-
     return (
         <>
             <div className="product-page">
@@ -143,7 +122,7 @@ function ProductPage() {
 
                     <div className="bag-wish-button">
                         <button onClick={handelAddToBag}>{addToBag === "Add To Bag" ? <ShoppingBagOutlinedIcon /> : <ArrowForwardIcon />}{addToBag}</button>
-                        <button onClick={handelWishlist} style={{ background: "white", color: "black", border: "1px solid grey" }}>
+                        <button style={{ background: "white", color: "black", border: "1px solid grey" }}>
                             <FavoriteBorderOutlinedIcon style={{ color: "#fd3e6c" }} />
                             WISHLIST</button>
                     </div>

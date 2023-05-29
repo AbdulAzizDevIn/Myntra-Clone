@@ -12,7 +12,6 @@ function Catalogue() {
     const [filterProducts, setFilterProducts] = useState([]);
 
     const [gender, setGender] = useState("all");
-    const [priceFilter, setPriceFilter] = useState("option1");
    
     const handelGender = (event) => {
         const value = event.target.value;
@@ -30,7 +29,7 @@ function Catalogue() {
 
     const handelCheckBox = (e) => {
         const { checked, value } = e.target;
-        productList.map((item)=>{
+        productList.map((item) => {
             if(checked){
                 if(value === item.name){
                     setFilterProducts([...filterProducts].filter((item)=>{
@@ -71,13 +70,13 @@ function Catalogue() {
             })
             setFilterProducts(sortedProducts)
         }
-        setPriceFilter(value)
+        
     }
 
     const handelClearAll = () => {
         setFilterProducts(productList);
         setGender("all");
-        setPriceFilter("option1")
+        
     }
 
     useEffect(() => {

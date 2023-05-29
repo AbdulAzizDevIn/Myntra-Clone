@@ -47,6 +47,13 @@
     background-color: #ff4974;
   }
 
+  .loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12%;
+  }
 
   .payment-successful{
     display: flex;

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
-  console.log(product)
   return (
       <div className="card" key={product.id} onClick={() => { navigate(`/product/${product.id}`) }} style={{ cursor: "pointer" }}>
         <img className="card-img" src={product.otherImages[0]} alt={product.name} />

@@ -16,7 +16,7 @@ function MenuBar(){
                 <div>Profile</div>
 
             </div>
-            <div className="wishlist" onClick={()=>{navigate("/wishlist")}}>
+            <div className="wishlist" >
                 <FavoriteBorderOutlinedIcon style={{fontSize:"25px"}}/>
                 <div>Wishlist</div>
             </div>

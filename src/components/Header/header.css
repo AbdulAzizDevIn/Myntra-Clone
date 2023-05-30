@@ -61,3 +61,9 @@
     font-weight: bold;
 
 }
+.welcome-menu{
+    padding-left: 15px;
+    padding-right: 40px;
+    padding-bottom: 5px;
+    font-size: 15px;
+}

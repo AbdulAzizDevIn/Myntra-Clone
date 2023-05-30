@@ -2,18 +2,47 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import bagContext from '../../context/bag.context';
+
+import { signOut } from 'firebase/auth';
+import { auth } from "../authentication/firebase";
 
 function MenuBar(){
     const navigate = useNavigate();
     const {bagList} = useContext(bagContext);
+
+    const [userName,setUserName] = useState("")
+
+    useEffect(()=>{
+        auth.onAuthStateChanged((user)=>{
+            if(user){
+                setUserName(user.displayName);
+            }
+            else{
+                setUserName("")
+            }
+        })
+    },[])
+    const handelSignOut = ()=>{
+        signOut(auth)
+        .then(()=>{
+            
+            localStorage.setItem("isAuthenticate",false)
+            
+        })
+        .catch((err)=>{
+            console.log("its not work");
+        })
+        
+        
+    }
     return (
 
         <div className="menu-bar">
-            <div className='profile'>
+            <div onClick={handelSignOut} className='profile'>
                 <PersonOutlineOutlinedIcon style={{fontSize:"25px"}} />
-                <div>Profile</div>
+                <div>{userName}</div>
 
             </div>
             <div className="wishlist" >

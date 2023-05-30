@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { Alert } from "@mui/material"
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
@@ -21,6 +21,12 @@ function Signup() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email);
     };
+    useLayoutEffect(() => {
+        const isAuthenticate = localStorage.getItem("isAuthenticate");
+        if (isAuthenticate === "true") {
+            navigate("/");
+        }
+    }, [])
 
     const getUserData = (e) => {
         let value = e.target.value;
@@ -32,23 +38,23 @@ function Signup() {
         e.preventDefault()
         if (!userData.name || !userData.email || !userData.password) {
             setErrorMsg("Please fill in all fields.");
-            setTimeout(()=>{
+            setTimeout(() => {
                 setErrorMsg("")
-            },5000)
+            }, 5000)
             return;
         }
         else if (!isValidEmail(userData.email)) {
             setErrorMsg("Please enter a valid email address.")
-            setTimeout(()=>{
+            setTimeout(() => {
                 setErrorMsg("")
-            },5000)
+            }, 5000)
             return;
         }
         else if (userData.password.length < 8) {
             setErrorMsg("Password must be at least 8 characters long.")
-            setTimeout(()=>{
+            setTimeout(() => {
                 setErrorMsg("")
-            },5000)
+            }, 5000)
             return;
         }
 
@@ -63,7 +69,8 @@ function Signup() {
                     navigate("/")
                 }, 3000);
                 setSubmitButtonDisabled(false);
-                setSuccessMsg("Signup successful!")
+                setSuccessMsg("Signup successful!");
+                localStorage.setItem("isAuthenticate", true);
             })
             .catch((err) => {
                 setSubmitButtonDisabled(false);

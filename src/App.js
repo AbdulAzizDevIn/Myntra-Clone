@@ -24,11 +24,13 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProductContext from "./context/products.context"
 import { productsData } from './constants/data'
 import BagContext from './context/bag.context'
+import FilterProductsContext from './context/filterProducts.context'
 
 
 function App() {
   const [productList, setProductsList] = useState([]);
   const [bagList, setBagList] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
   useEffect(() => {
     setProductsList(productsData)
   }, [])
@@ -70,12 +72,14 @@ function App() {
   ])
   return (
     <div className="App">
-
-      <BagContext.Provider value={{ bagList, setBagList }}>
+      <FilterProductsContext.Provider value={{filterProducts,setFilterProducts}}>
+        <BagContext.Provider value={{ bagList, setBagList }}>
         <ProductContext.Provider value={{ productList, setProductsList }}>
           <RouterProvider router={router}></RouterProvider>
         </ProductContext.Provider>
       </BagContext.Provider>
+      </FilterProductsContext.Provider>
+      
 
 
     </div>

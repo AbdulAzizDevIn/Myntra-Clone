@@ -6,10 +6,11 @@ import { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import productsContext from "../../context/products.context";
 import Checkboxes from "./CheckBoxes";
+import filterProductsContext from "../../context/filterProducts.context";
 function Catalogue() {
     const { productList } = useContext(productsContext);
 
-    const [filterProducts, setFilterProducts] = useState([]);
+    const {filterProducts, setFilterProducts} = useContext(filterProductsContext);
 
     const [gender, setGender] = useState("all");
    

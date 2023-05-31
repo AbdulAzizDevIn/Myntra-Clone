@@ -92,19 +92,19 @@ function MenuBar() {
 
                     {
                         isAuthenticate === false ? (
-                            <>
+                            <div>
                                 <MenuItem onClick={handelNavigateLogin} style={{paddingRight:90}}>Login</MenuItem>
                                 <MenuItem onClick={handelNavigateSignup}>Signup</MenuItem>
 
-                            </>
+                            </div>
 
                         ) : (
 
-                            <>
+                            <div>
                                 <div className='welcome-menu' onClick={handleClose} style={{ fontWeight: "revert-layer" }}>Welcome </div>
                                 <div className='welcome-menu' onClick={handleClose} style={{ fontSize: 17, fontWeight: "bolder" }}>{userName}</div>
                                 <MenuItem onClick={handelSignOut} style={{ fontWeight: 100 }}>Logout</MenuItem>
-                            </>
+                            </div>
                         )
                     }
                 </Menu>

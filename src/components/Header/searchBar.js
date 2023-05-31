@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import SearchIcon from '@mui/icons-material/Search';
 
 import { InputBase,Button } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
+import productsContext from "../../context/products.context";
+import filterProductsContext from "../../context/filterProducts.context";
 
 let searchBtnStyle = {
     color:"grey",
@@ -27,15 +30,43 @@ const SearchContainer = styled(InputBase)`
 
 `
 
-function search(){
+function Search(){
+    const {productList} = useContext(productsContext);
+    const {filterProducts, setFilterProducts} = useContext(filterProductsContext);
+    const [searchProd,setSearchProd] = useState("");
+    if(searchProd === ""){
+        setFilterProducts(productList)
+    }
+    
+
+
+    
+    
+
+    const handleSearch = (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        setSearchProd(searchTerm);
+      
+        const newFilterProds = productList.reduce((newItem, item) => {
+          if (item.name.toLowerCase().includes(searchTerm)) {
+            newItem.push(item);
+          }
+          return newItem;
+        }, []);
+      
+        setFilterProducts(newFilterProds);
+        console.log(filterProducts);
+      };
+console.log(searchProd);
+
     return(
         <>
         <Button style={searchBtnStyle}>
             <SearchIcon style={{fontSize:30}}/>
         </Button>
-        <SearchContainer placeholder="Search for products"/>
+        <SearchContainer value={searchProd} onChange={handleSearch} placeholder="Search for products"/>
         </>
     )
 
 }
-export default search;
+export default Search;

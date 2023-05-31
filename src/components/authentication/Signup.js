@@ -67,6 +67,7 @@ function Signup() {
                 })
                 setTimeout(() => {
                     navigate("/")
+                    window.location.reload()
                 }, 3000);
                 setSubmitButtonDisabled(false);
                 setSuccessMsg("Signup successful!");

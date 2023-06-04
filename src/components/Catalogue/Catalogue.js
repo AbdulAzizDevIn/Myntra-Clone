@@ -6,23 +6,29 @@ import { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import productsContext from "../../context/products.context";
 import Checkboxes from "./CheckBoxes";
+
 import filterProductsContext from "../../context/filterProducts.context";
 function Catalogue() {
-    const { productList } = useContext(productsContext);
 
-    const {filterProducts, setFilterProducts} = useContext(filterProductsContext);
+    const { productList } = useContext(productsContext);
+    const { filterProducts } = useContext(filterProductsContext)
+    const [newFilterProds, setNewFilterProds] = useState(productList);
+
+    useEffect(() => {
+        setNewFilterProds(filterProducts);
+    }, [filterProducts])
 
     const [gender, setGender] = useState("all");
-   
+
     const handelGender = (event) => {
         const value = event.target.value;
-        setGender(value)
+        setGender(value);
         if (value === "all") {
-            setFilterProducts(productList);
+            setNewFilterProds(productList);
         }
         else {
             const filteredData = productList.filter((item) => item.gender === value)
-            setFilterProducts(filteredData);
+            setNewFilterProds(filteredData);
 
         }
 
@@ -30,59 +36,47 @@ function Catalogue() {
 
     const handelCheckBox = (e) => {
         const { checked, value } = e.target;
-        productList.map((item) => {
-            if(checked){
-                if(value === item.name){
-                    setFilterProducts([...filterProducts].filter((item)=>{
-                        return item.name === value;
+        if (checked) {
+          const filteredData = productList.filter((item) => item.name === value);
+          setNewFilterProds(filteredData);
+        } else {
+          setNewFilterProds(productList);
+          setGender("all");
+        }
+      };
     
-                    }))
-                } 
-                
-            }
-            else{
-                setFilterProducts(productList)
-                setGender("all");
 
-            }
-        })
-    }
-
-    const handelPriceFilter=(e)=>{
+    const handelPriceFilter = (e) => {
         const value = e.target.value;
-        if(value === "option1"){
-            setFilterProducts(productList);
+        if (value === "option1") {
+            setNewFilterProds(productList);
+        } else if (value === "option2") {
+            const sortedProducts = [...newFilterProds].sort(
+                (a, b) => a.finalPrice - b.finalPrice
+            );
+            setNewFilterProds(sortedProducts);
+        } else if (value === "option3") {
+            const sortedProducts = [...newFilterProds].sort(
+                (a, b) => b.finalPrice - a.finalPrice
+            );
+            setNewFilterProds(sortedProducts);
+        } else {
+            const sortedProducts = [...newFilterProds].sort(
+                (a, b) => b.discount - a.discount
+            );
+            setNewFilterProds(sortedProducts);
         }
-        else if(value === "option2"){
-            const sortedProducts = [...filterProducts].sort((a,b)=>{
-                return a.finalPrice - b.finalPrice
-            })
-            setFilterProducts(sortedProducts)
-        }
-        else if(value === "option3"){
-            const sortedProducts = [...filterProducts].sort((a,b)=>{
-                return b.finalPrice - a.finalPrice
-            })
-            setFilterProducts(sortedProducts)
-        }
-        else{
-            const sortedProducts = [...filterProducts].sort((a,b)=>{
-                return b.discount - a.discount
-            })
-            setFilterProducts(sortedProducts)
-        }
-        
-    }
+    };
 
     const handelClearAll = () => {
-        setFilterProducts(productList);
+        setNewFilterProds(productList);
         setGender("all");
-        
+
     }
 
     useEffect(() => {
-        setFilterProducts(productList);
-        
+        setNewFilterProds(productList);
+
     }, [productList])
 
 
@@ -144,12 +138,12 @@ function Catalogue() {
                     <label htmlFor="categories" style={{ padding: "10px 5px", fontWeight: "bold" }}>Brands</label>
                     <Checkboxes handelCheckBox={handelCheckBox} brandName="HERE&NOW" />
                     <Checkboxes handelCheckBox={handelCheckBox} brandName="HIGHLANDER" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Roadster"/>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Dennis Lingo"/>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="WROGN"/>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Mast & Harbour"/>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="SASSAFRAS"/>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Kook N Keech"/>
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Roadster" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Dennis Lingo" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="WROGN" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Mast & Harbour" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="SASSAFRAS" />
+                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Kook N Keech" />
                 </div>
             </div>
 
@@ -167,7 +161,7 @@ function Catalogue() {
                 </div>
                 <div className="all-card">
                     {
-                        filterProducts.map((product) => {
+                        newFilterProds.map((product) => {
                             return <ProductCard key={product.id} product={product} />
                         })
                     }

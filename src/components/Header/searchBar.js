@@ -1,19 +1,19 @@
 import styled from "@emotion/styled";
 import SearchIcon from '@mui/icons-material/Search';
 
-import { InputBase,Button } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { InputBase, Button } from "@mui/material";
+import { useContext, useState } from "react";
 import productsContext from "../../context/products.context";
 import filterProductsContext from "../../context/filterProducts.context";
 
 let searchBtnStyle = {
-    color:"grey",
-    backgroundColor:"#f5f5f6",
+    color: "grey",
+    backgroundColor: "#f5f5f6",
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-    padding:"7px",
-    paddingBottom:"8px"
-    
+    padding: "7px",
+    paddingBottom: "8px"
+
 }
 
 const SearchContainer = styled(InputBase)`
@@ -30,41 +30,36 @@ const SearchContainer = styled(InputBase)`
 
 `
 
-function Search(){
-    const {productList} = useContext(productsContext);
-    const {filterProducts, setFilterProducts} = useContext(filterProductsContext);
-    const [searchProd,setSearchProd] = useState("");
-    if(searchProd === ""){
+function Search() {
+    const { productList } = useContext(productsContext);
+    const { setFilterProducts } = useContext(filterProductsContext);
+    const [searchProd, setSearchProd] = useState("");
+
+    if (searchProd === "") {
         setFilterProducts(productList)
     }
-    
 
-
-    
-    
 
     const handleSearch = (e) => {
+
         const searchTerm = e.target.value.toLowerCase();
         setSearchProd(searchTerm);
-      
         const newFilterProds = productList.reduce((newItem, item) => {
-          if (item.name.toLowerCase().includes(searchTerm)) {
-            newItem.push(item);
-          }
-          return newItem;
+            if (item.name.toLowerCase().includes(searchTerm)) {
+                newItem.push(item);
+            }
+            return newItem;
         }, []);
-      
-        setFilterProducts(newFilterProds);
-        console.log(filterProducts);
-      };
-console.log(searchProd);
 
-    return(
+        setFilterProducts(newFilterProds);
+    };
+
+    return (
         <>
-        <Button style={searchBtnStyle}>
-            <SearchIcon style={{fontSize:30}}/>
-        </Button>
-        <SearchContainer value={searchProd} onChange={handleSearch} placeholder="Search for products"/>
+            <Button style={searchBtnStyle}>
+                <SearchIcon style={{ fontSize: 30 }} />
+            </Button>
+            <SearchContainer onChange={handleSearch} placeholder="Search for products" />
         </>
     )
 

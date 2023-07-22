@@ -7,7 +7,8 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function Bag() {
     const { bagList, setBagList } = useContext(bagContext);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const isAuthenticate = localStorage.getItem("isAuthenticate");
 
     const [totalMrp, setTotalMrp] = useState(0);
     const [discount, setDiscount] = useState(0);
@@ -163,7 +164,7 @@ function Bag() {
                                 <p style={{ fontWeight: "bold" }}>Total Amount</p>
                                 <p style={{ fontWeight: "bold" }}>₹{totalAmount}</p>
                             </div>
-                            <button onClick={()=>navigate("/payment")}>PLACE ORDER</button>
+                            <button onClick={()=> isAuthenticate === "true" ? navigate("/payment"):navigate("/login")}>PLACE ORDER</button>
                         </div>
 
                     </div>

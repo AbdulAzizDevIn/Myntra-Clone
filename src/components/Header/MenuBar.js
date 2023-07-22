@@ -9,9 +9,11 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import bagContext from '../../context/bag.context';
+import wishlistContext from '../../context/wishlist.context';
 
 import { signOut } from 'firebase/auth';
 import { auth } from "../authentication/firebase";
+
 
 
 
@@ -28,6 +30,7 @@ function MenuBar() {
 
     const navigate = useNavigate();
     const { bagList } = useContext(bagContext);
+    const {wishlist} = useContext(wishlistContext)
 
     const [userName, setUserName] = useState("")
     let isAuthenticate = localStorage.getItem("isAuthenticate") ==="true";
@@ -109,11 +112,12 @@ function MenuBar() {
                     }
                 </Menu>
             </div>
-            <div className="wishlist" >
+            <div className="wishlist" onClick={()=> navigate("/wishlist")}>
                 <FavoriteBorderOutlinedIcon style={{ fontSize: "25px" }} />
                 <div>Wishlist</div>
+                {wishlist.length >= 1 ? <div className='bag-count'>{wishlist.length}</div> : null}
             </div>
-            <div className='bag' onClick={() => { navigate("/bag") }}>
+            <div className='bag' onClick={() => navigate("/bag")}>
                 <ShoppingBagOutlinedIcon style={{ fontSize: "25px" }} />
                 <div>Bag</div>
                 {bagList.length >= 1 ? <div className='bag-count'>{bagList.length}</div> : null}

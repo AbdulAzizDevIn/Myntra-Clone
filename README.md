@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Myntra-Clone-project
+**Myntra Application created from scratch using React JS.**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Getting Started
+```npm start```
 
-In the project directory, you can run:
+**List of features implemented -**
+# Home Page
+* Sorting filter - sorts the resulting shirts.
+* Gender, brand and price filter - filters the resulting shirts.
+* Dynamic generation of brand and price filters according to search and gender selection.
+* Clear all Button - removes all the filters.
+* Add to bag button - adds shirt to bag.
+* Shirt wishlist button - adds shirt to wishlist.
+* Bag button - navigates to bag page.
+* Wishlist button - navigates to the wishlist page.
+* Notification toast is given every time a shirt is wishlisted or added to bad or moved to the bag or if any shirt is deleted from them.
+* Count Bubble is shown in the Navbar wishlist and bag buttons for the number of items inside them.
+* Search result shows all shirts which include the search text inside their brand name or description text.
+* Click the logo to reset all search and filters and move to the home page.
+* No products found page is implemented when the search results to zero and go to the home button is provided.
+* In the top it shows the result for which given search text if anything is searched, else it shows the gender for which the resulted shirts are, along with the resulted shirt count.
+* In mouse enter in each product card there is a view similar button. without functionality. It can be use later to add functionalities. 
 
-### `npm start`
+# Wishlist Page
+* The total number of shirts wishlisted is shown.
+* Shirt delete button to delete shirt from wishlist.
+* Move to bag button to move the wishlisted shirt to the bag.
+* When there is no wishlisted product, No wishlisted product page is shown and a button to home is provided.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Bag Page
+* The total number of shirts carted is shown.
+* Shirt delete button to delete shirt from the bag.
+* Shows the total cost of all the carted products with a delivery price added.
+* When there is no product in the bag, No product page is shown and a button to wishlist is provided.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Product page
+* The product page shows the product details.
+* Hovering on product image it zoom in little bit.
+* Clicking on product image user can see full view of the product image.
+* Extra zoom in full view product image.
+* User can select size of the product. 
+* Pincode checking - to check if the product is available at those pin code.

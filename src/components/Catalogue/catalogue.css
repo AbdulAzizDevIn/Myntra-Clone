@@ -43,7 +43,59 @@
     flex-direction: column;
     font-size: 16px;
 }
-
+/* Hide the default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkbox-container .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    height: 15px;
+    width: 15px;
+    border: 2px solid #ad1457;
+    background-color: #fff;
+    border-radius: 2px;
+  }
+  
+  /* When the checkbox is checked, change the background color */
+  .checkbox-container input:checked + .checkmark {
+    background-color: #d81b60;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkbox-container input:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  /* Style the checkbox label */
+  .checkbox-container {
+    position: relative;
+    padding-left: 35px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Optional: Add spacing between checkboxes */
+  .checkbox-container + .checkbox-container {
+    margin-top: 10px;
+  }
+  
+  
 .display-products {
     width: 100%;
     padding-right: 2%;
@@ -81,7 +133,6 @@
     flex-wrap: wrap;
 
 }
-
 /* Responsive Styles */
 
 @media (max-width: 768px) {

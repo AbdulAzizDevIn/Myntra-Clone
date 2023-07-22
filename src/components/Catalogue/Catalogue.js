@@ -5,11 +5,14 @@ import { pink } from "@mui/material/colors";
 import { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import productsContext from "../../context/products.context";
-import Checkboxes from "./CheckBoxes";
-
 import filterProductsContext from "../../context/filterProducts.context";
 function Catalogue() {
 
+    const brands = ["HERE&NOW", "HIGHLANDER", "Roadster",
+     "Dennis Lingo", "WROGN", "Mast & Harbour", "SASSAFRAS",
+      "Kook N Keech","GAP","Berrylush", "Style Quotient", "KASSUALLY",
+      "English Navy","GANT"]; 
+    const [selectedBrands, setSelectedBrands] = useState([]);
     const { productList } = useContext(productsContext);
     const { filterProducts } = useContext(filterProductsContext)
     const [newFilterProds, setNewFilterProds] = useState(productList);
@@ -34,17 +37,17 @@ function Catalogue() {
 
     }
 
-    const handelCheckBox = (e) => {
-        const { checked, value } = e.target;
-        if (checked) {
-          const filteredData = productList.filter((item) => item.name === value);
-          setNewFilterProds(filteredData);
-        } else {
-          setNewFilterProds(productList);
-          setGender("all");
-        }
-      };
     
+
+  const handelCheckBox = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setSelectedBrands((prevSelected) => [...prevSelected, value]);
+    } else {
+      setSelectedBrands((prevSelected) => prevSelected.filter((brand) => brand !== value));
+    }
+  };
+
 
     const handelPriceFilter = (e) => {
         const value = e.target.value;
@@ -71,13 +74,29 @@ function Catalogue() {
     const handelClearAll = () => {
         setNewFilterProds(productList);
         setGender("all");
+        setSelectedBrands([])
+        const checkboxes = document.querySelectorAll("input[type='checkbox']");
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        })
 
     }
 
     useEffect(() => {
-        setNewFilterProds(productList);
-
-    }, [productList])
+        let filteredData = productList;
+    
+        if (selectedBrands.length > 0) {
+          filteredData = productList.filter((item) =>
+            selectedBrands.includes(item.name)
+          );
+        }
+    
+        if (gender !== "all") {
+          filteredData = filteredData.filter((item) => item.gender === gender);
+        }
+    
+        setNewFilterProds(filteredData);
+      }, [selectedBrands, gender, productList]);
 
 
 
@@ -85,7 +104,7 @@ function Catalogue() {
         <div className="catalogue">
             <div className="catalogue-menu">
                 <div className="clear-filter">
-                    <p>Filters</p>
+                    <p>Filters {newFilterProds.length}</p>
                     <button onClick={handelClearAll}>CLEAR All</button>
                 </div>
                 <div className="gender">
@@ -136,14 +155,17 @@ function Catalogue() {
 
                 <div className="categories">
                     <label htmlFor="categories" style={{ padding: "10px 5px", fontWeight: "bold" }}>Brands</label>
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="HERE&NOW" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="HIGHLANDER" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Roadster" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Dennis Lingo" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="WROGN" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Mast & Harbour" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="SASSAFRAS" />
-                    <Checkboxes handelCheckBox={handelCheckBox} brandName="Kook N Keech" />
+                    {
+                        brands.map((brand) => {
+                            return (
+                                <label key={brand} class="checkbox-container" onClick={handelCheckBox}>
+                                    <input type="checkbox" value={brand} />
+                                    <span class="checkmark"></span>
+                                    {brand}
+                                </label>
+                            )
+                        })
+                    }
                 </div>
             </div>
 

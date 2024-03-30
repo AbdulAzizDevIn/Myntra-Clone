@@ -20,8 +20,9 @@ function Catalogue() {
     useEffect(() => {
         setNewFilterProds(filterProducts);
     }, [filterProducts])
-
-    const [gender, setGender] = useState("all");
+   
+    console.log(newFilterProds);
+    const [gender, setGender] = useState("all"); 
 
     const handelGender = (event) => {
         const value = event.target.value;

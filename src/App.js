@@ -24,10 +24,10 @@ import Signup from './components/authentication/Signup';
 import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProductContext from "./context/products.context"
-import { productsData } from './constants/data'
 import BagContext from './context/bag.context'
 import FilterProductsContext from './context/filterProducts.context'
 import WishlistContext from './context/wishlist.context'
+import BannersContext from "./context/banners.context"
 
 
 function App() {
@@ -35,10 +35,37 @@ function App() {
   const [bagList, setBagList] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  useEffect(() => {
-    setProductsList(productsData)
-  }, [])
+  const [banners, setBanners] = useState([]);
+  
 
+const fetchBannersData =()=>{
+  fetch("http://localhost:5000/api/bannerData",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(res =>{
+    setBanners(res[0]);
+  })
+}
+const fetchProductData =()=>{
+  fetch("http://localhost:5000/api/productsData",{
+    method:"POST",
+    headers:{
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(res =>{
+    setProductsList(res[0]);
+  })
+}
+useEffect(() => {
+    fetchBannersData();
+    fetchProductData();
+  }, []);
 
   const router = createBrowserRouter([
     {
@@ -87,15 +114,17 @@ function App() {
   ])
   return (
     <div className="App">
-      <WishlistContext.Provider value={{ wishlist, setWishlist }}>
-        <FilterProductsContext.Provider value={{ filterProducts, setFilterProducts }}>
-          <BagContext.Provider value={{ bagList, setBagList }}>
-            <ProductContext.Provider value={{ productList, setProductsList }}>
-              <RouterProvider router={router}></RouterProvider>
-            </ProductContext.Provider>
-          </BagContext.Provider>
-        </FilterProductsContext.Provider>
-      </WishlistContext.Provider>
+      <BannersContext.Provider value={{ banners, setBanners }}>
+        <WishlistContext.Provider value={{ wishlist, setWishlist }}>
+          <FilterProductsContext.Provider value={{ filterProducts, setFilterProducts }}>
+            <BagContext.Provider value={{ bagList, setBagList }}>
+              <ProductContext.Provider value={{ productList, setProductsList }}>
+                <RouterProvider router={router}></RouterProvider>
+              </ProductContext.Provider>
+            </BagContext.Provider>
+          </FilterProductsContext.Provider>
+        </WishlistContext.Provider>
+      </BannersContext.Provider>
     </div>
   );
 }

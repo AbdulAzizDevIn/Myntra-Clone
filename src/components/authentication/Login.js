@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useLayoutEffect, useState } from "react";
 
 
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "./firebase";
-
 function Login() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
@@ -27,7 +24,7 @@ function Login() {
             navigate("/");
         }
 
-        }, [])
+    }, [])
 
     const getUserData = (e) => {
         let value = e.target.value;
@@ -60,30 +57,38 @@ function Login() {
         }
 
         setSubmitButtonDisabled(true)
-        signInWithEmailAndPassword(auth, userData.email, userData.password)
-            .then((res) => {
-                setSubmitButtonDisabled(false)
-                setSuccessMsg("Login successful!")
-                setTimeout(() => {
-                    navigate("/")
-                }, 3000);
-                localStorage.setItem("isAuthenticate", true)
+
+
+        fetch("http://localhost:5000/api/loginuser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: userData.email,
+                password: userData.password
             })
-            .catch((err) => {
-                setSubmitButtonDisabled(false)
-                if (err.message === "Firebase: Error (auth/user-not-found).") {
-                    setErrorMsg("User not found. Please check your email or sign up for a new account.")
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setTimeout(() => {
+                        navigate("/")
+                    }, 2000);
+                    setSubmitButtonDisabled(true);
+                    setSuccessMsg("Login successful!")
+                    localStorage.setItem("isAuthenticate", true);
+                    localStorage.setItem("authToken",data.authToken);
+                    console.log(localStorage.getItem("authToken"));
                 }
-                else if (err.message === "Firebase: Error (auth/wrong-password).") {
-                    setErrorMsg("Incorrect password. Please try again.")
+                else{
+                    setErrorMsg(data.errors)
+                    setSubmitButtonDisabled(false);
                 }
-                else if (err.message === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).") {
-                    setErrorMsg("This account has been temporarily disabled due to many failed login attempts.")
-                }
-                setTimeout(() => {
-                    setErrorMsg("")
-                }, 5000)
             })
+            
+
+
     }
     return (
         <div className="login-page">

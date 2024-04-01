@@ -7,8 +7,8 @@ function TopBrands(){
     const [topBrandsData,setTopBrandsData] =useState([])
 
     useEffect(() => {
-        if (banners && banners[1] && banners[1].topBrandsBanners) {
-            setTopBrandsData(banners[1].topBrandsBanners);
+        if (banners && banners[2] && banners[2].topBrandsBanners) {
+            setTopBrandsData(banners[2].topBrandsBanners);
         }
     }, [banners]);
     return(

@@ -77,9 +77,11 @@ function Login() {
                     }, 2000);
                     setSubmitButtonDisabled(true);
                     setSuccessMsg("Login successful!")
+                    window.location.reload()
                     localStorage.setItem("isAuthenticate", true);
                     localStorage.setItem("authToken",data.authToken);
-                    console.log(localStorage.getItem("authToken"));
+                    localStorage.setItem("userName",data.userName);
+                    
                 }
                 else{
                     setErrorMsg(data.errors)

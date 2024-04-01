@@ -22,8 +22,8 @@ const { banners } = useContext(bannersContext);
 const [bigBanner, setBigBanner] = useState([]);
 
 useEffect(() => {
-    if (banners && banners[3] && banners[3].bigBanners) {
-        setBigBanner(banners[3].bigBanners);
+    if (banners && banners[1] && banners[1].bigBanners) {
+        setBigBanner(banners[1].bigBanners);
     }
 }, [banners]);
   return (

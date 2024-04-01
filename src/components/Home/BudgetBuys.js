@@ -7,8 +7,8 @@ function BudgetBuys(){
     const [budgetBuyData,setBudgetBuyData] =useState([])
 
     useEffect(() => {
-        if (banners && banners[2] && banners[2].budgetBuyBanners) {
-            setBudgetBuyData(banners[2].budgetBuyBanners);
+        if (banners && banners[3] && banners[3].budgetBuyBanners) {
+            setBudgetBuyData(banners[3].budgetBuyBanners);
         }
     }, [banners]);
     return(

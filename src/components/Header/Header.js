@@ -19,7 +19,6 @@ export default function Header(){
     const navigate = useNavigate();
     const handleClickLogo = () => {
         navigate("/");
-        window.location.reload();
     };
 
     return (

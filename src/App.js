@@ -36,7 +36,7 @@ function App() {
   const [wishlist, setWishlist] = useState([]);
   
 const fetchProductData =()=>{
-  fetch("http://localhost:5000/api/productsData",{
+  fetch("https://myntra-clone-api.vercel.app/api/productsData",{
     method:"POST",
     headers:{
       "Content-Type": "application/json"

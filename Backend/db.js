@@ -5,9 +5,7 @@ const mongoDB  = async() => {
     try{
         await mongoose.connect(mongoUrl)
         console.log("Connected to MongoDB");
-        const fetchBannerData = await mongoose.connection.db.collection("Banners").find({}).toArray();
         const fetchProductData = await mongoose.connection.db.collection("Products_Data").find({}).toArray();
-        global.banners = fetchBannerData;
         global.products = fetchProductData;
     }catch(err){
         console.error('Error connecting to MongoDB:', err);

@@ -1,16 +1,7 @@
+import { topBrandsData } from "../../constants/data";
 
-import bannersContext from "../../context/banners.context";
-import { useContext,useState,useEffect } from "react";
 function TopBrands(){
     const topBrandsBannerUrl = "https://i.ibb.co/CtVdP1r/brands-banner.png";
-    const {banners} = useContext(bannersContext)
-    const [topBrandsData,setTopBrandsData] =useState([])
-
-    useEffect(() => {
-        if (banners && banners[2] && banners[2].topBrandsBanners) {
-            setTopBrandsData(banners[2].topBrandsBanners);
-        }
-    }, [banners]);
     return(
         <>
             <img style={{width:"100%"}} src={topBrandsBannerUrl} alt="" />

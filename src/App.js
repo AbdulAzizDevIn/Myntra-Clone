@@ -27,7 +27,6 @@ import ProductContext from "./context/products.context"
 import BagContext from './context/bag.context'
 import FilterProductsContext from './context/filterProducts.context'
 import WishlistContext from './context/wishlist.context'
-import BannersContext from "./context/banners.context"
 
 
 function App() {
@@ -35,21 +34,7 @@ function App() {
   const [bagList, setBagList] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  const [banners, setBanners] = useState([]);
   
-
-const fetchBannersData =()=>{
-  fetch("http://localhost:5000/api/bannerData",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
-    }
-  })
-  .then(res => res.json())
-  .then(res =>{
-    setBanners(res[0]);
-  })
-}
 const fetchProductData =()=>{
   fetch("http://localhost:5000/api/productsData",{
     method:"POST",
@@ -63,7 +48,6 @@ const fetchProductData =()=>{
   })
 }
 useEffect(() => {
-    fetchBannersData();
     fetchProductData();
   }, []);
 
@@ -114,7 +98,6 @@ useEffect(() => {
   ])
   return (
     <div className="App">
-      <BannersContext.Provider value={{ banners, setBanners }}>
         <WishlistContext.Provider value={{ wishlist, setWishlist }}>
           <FilterProductsContext.Provider value={{ filterProducts, setFilterProducts }}>
             <BagContext.Provider value={{ bagList, setBagList }}>
@@ -124,7 +107,6 @@ useEffect(() => {
             </BagContext.Provider>
           </FilterProductsContext.Provider>
         </WishlistContext.Provider>
-      </BannersContext.Provider>
     </div>
   );
 }

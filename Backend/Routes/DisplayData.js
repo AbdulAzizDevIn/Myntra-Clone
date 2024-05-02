@@ -10,7 +10,7 @@ router.post("/bannerData",(req,res) => {
         res.send("Server Error")
     }
 })
-router.post("/productsData",(req, res) => {
+router.get("/productsData",(req, res) => {
     try{
         res.send([global.products]);
     }

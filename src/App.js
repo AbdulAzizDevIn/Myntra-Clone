@@ -37,7 +37,7 @@ function App() {
   
 const fetchProductData =()=>{
   fetch("https://myntra-clone-api.vercel.app/api/productsData",{
-    method:"POST",
+    method:"GET",
     headers:{
       "Content-Type": "application/json"
     }

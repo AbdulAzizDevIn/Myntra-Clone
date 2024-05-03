@@ -57,7 +57,7 @@ function Signup() {
 
         setSubmitButtonDisabled(true);
 
-        fetch("http://localhost:5000/api/createuser", {
+        fetch("https://myntra-clone-api.vercel.app/api/createuser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

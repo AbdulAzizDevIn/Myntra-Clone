@@ -37,7 +37,7 @@ function App() {
   
 const fetchProductData =()=>{
   fetch("http://localhost:5000/api/productsData",{
-    method:"POST",
+    method:"GET",
     headers:{
       "Content-Type": "application/json"
     }

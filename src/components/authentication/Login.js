@@ -59,7 +59,7 @@ function Login() {
         setSubmitButtonDisabled(true)
 
 
-        fetch("https://myntra-clone-api.vercel.app/api/loginuser", {
+        fetch("https://myntraa-backend-2.onrender.com/api/loginuser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -3,9 +3,6 @@ import { Alert } from "@mui/material"
 import { useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
-import { auth } from "./firebase";
-
 function Signup() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
@@ -59,30 +56,38 @@ function Signup() {
         }
 
         setSubmitButtonDisabled(true);
-        createUserWithEmailAndPassword(auth, userData.email, userData.password)
-            .then((res) => {
-                const userRes = res.user;
-                updateProfile(userRes, {
-                    displayName: userData.name
-                })
-                setTimeout(() => {
-                    navigate("/")
-                    window.location.reload()
-                }, 3000);
-                setSubmitButtonDisabled(false);
-                setSuccessMsg("Signup successful!");
-                localStorage.setItem("isAuthenticate", true);
+
+        fetch("https://myntra-clone-api.vercel.app/api/createuser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: userData.name,
+                email: userData.email,
+                password: userData.password
             })
-            .catch((err) => {
-                setSubmitButtonDisabled(false);
-                if (err.message === "Firebase: Error (auth/email-already-in-use).") {
-                    setErrorMsg("This email is already registered. Please use a different email or login.")
-                }
-                console.log(err.message);
-                setTimeout(() => {
-                    setErrorMsg("")
-                }, 4000)
-            })
+        })
+            .then(res => res.json()
+                .then(user => {
+                    if (user.success) {
+                        setTimeout(() => {
+                            navigate("/")
+                            window.location.reload()
+                        }, 2000);
+                        
+                        setSuccessMsg("Signup successful!");
+                        localStorage.setItem("isAuthenticate", true);
+                    }
+                    else{
+                        setErrorMsg(user.errors);
+                        setSubmitButtonDisabled(false);
+                    }
+                }))
+
+
+
+
     }
     return (
         <div className="login-page">
@@ -90,7 +95,7 @@ function Signup() {
                 <Alert style={{}} severity="success">{successMsg}</Alert>
             }
             <h2>Signup</h2>
-            <form action="">
+            <form >
                 <TextField
                     label="Name"
                     variant="outlined"

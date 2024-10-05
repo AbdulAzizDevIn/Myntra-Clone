@@ -11,11 +11,6 @@ import { useContext, useEffect, useState } from 'react';
 import bagContext from '../../context/bag.context';
 import wishlistContext from '../../context/wishlist.context';
 
-import { signOut } from 'firebase/auth';
-import { auth } from "../authentication/firebase";
-
-
-
 
 function MenuBar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -27,7 +22,6 @@ function MenuBar() {
         setAnchorEl(null);
     };
 
-
     const navigate = useNavigate();
     const { bagList } = useContext(bagContext);
     const {wishlist} = useContext(wishlistContext)
@@ -37,26 +31,23 @@ function MenuBar() {
 
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+        let user = localStorage.getItem("userName")
+        console.log(user);
             if (user) {
-                setUserName(user.displayName);
+                setUserName(user);
             }
             else {
                 setUserName("")
             }
-        })
-    }, [])
+        
+    }, [userName])
 
     const handelSignOut = () => {
-        signOut(auth)
-            .then(() => {
-
-                localStorage.setItem("isAuthenticate", false)
-
-            })
-            .catch((err) => {
-                console.log("its not work");
-            })
+        
+            localStorage.setItem("authToken", "");
+            localStorage.setItem("isAuthenticate",false);
+            localStorage.setItem("userName","")
+        
         handleClose();
         window.location.reload()
 

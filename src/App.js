@@ -24,7 +24,6 @@ import Signup from './components/authentication/Signup';
 import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProductContext from "./context/products.context"
-import { productsData } from './constants/data'
 import BagContext from './context/bag.context'
 import FilterProductsContext from './context/filterProducts.context'
 import WishlistContext from './context/wishlist.context'
@@ -35,10 +34,22 @@ function App() {
   const [bagList, setBagList] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  useEffect(() => {
-    setProductsList(productsData)
-  }, [])
-
+  
+const fetchProductData =()=>{
+  fetch("https://myntra-clone-api.vercel.app/api/productsData",{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(res =>{
+    setProductsList(res[0]);
+  })
+}
+useEffect(() => {
+    fetchProductData();
+  }, []);
 
   const router = createBrowserRouter([
     {
@@ -87,15 +98,15 @@ function App() {
   ])
   return (
     <div className="App">
-      <WishlistContext.Provider value={{ wishlist, setWishlist }}>
-        <FilterProductsContext.Provider value={{ filterProducts, setFilterProducts }}>
-          <BagContext.Provider value={{ bagList, setBagList }}>
-            <ProductContext.Provider value={{ productList, setProductsList }}>
-              <RouterProvider router={router}></RouterProvider>
-            </ProductContext.Provider>
-          </BagContext.Provider>
-        </FilterProductsContext.Provider>
-      </WishlistContext.Provider>
+        <WishlistContext.Provider value={{ wishlist, setWishlist }}>
+          <FilterProductsContext.Provider value={{ filterProducts, setFilterProducts }}>
+            <BagContext.Provider value={{ bagList, setBagList }}>
+              <ProductContext.Provider value={{ productList, setProductsList }}>
+                <RouterProvider router={router}></RouterProvider>
+              </ProductContext.Provider>
+            </BagContext.Provider>
+          </FilterProductsContext.Provider>
+        </WishlistContext.Provider>
     </div>
   );
 }

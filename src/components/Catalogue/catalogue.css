@@ -43,7 +43,15 @@
     flex-direction: column;
     font-size: 16px;
 }
-/* Hide the default checkbox */
+.brand-dropdown {
+    display: none;
+}
+
+.brand-list {
+    display: flex;
+    flex-direction: column;
+}
+
 .checkbox-container input {
     position: absolute;
     opacity: 0;
@@ -136,10 +144,82 @@
 /* Responsive Styles */
 
 @media (max-width: 768px) {
-    .display-products {
-        padding-left: 10rem;
+    .clear-filter {
+        font-size: 14px;
     }
-    .catalogue-menu{
-        width: 15vh;
+
+    .clear-filter button {
+        height: 20px;
+        font-size: 10px;
+        margin-right: 30px;
+    }
+
+    .gender, 
+    .categories {
+        font-size: 14px;
+    }
+    .gender{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .checkbox-container{
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .catalogue-menu {
+        position: relative;
+        width: 100%;
+        padding: 1% 4%;
+        border-right: none;
+        height: auto;
+        font-size: 10px;
+    }
+
+    .catalogue {
+        display: flex;
+        flex-direction: column;
+    }
+    .brand-list {
+        display: none;
+    }
+    .brand-dropdown {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .brand-dropdown select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ad1457;
+    }
+  
+
+    .display-products {
+        padding: 0 ;
+        width: 100%;
+    }
+
+    .dropdown-container {
+        justify-content: center;
+        margin-top: 10px;
+        margin-right: 0;
+    }
+
+    .all-card {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        padding-left: 0;
+        padding-right: 0px;
+    }
+
+    .checkbox-container {
+        padding-left: 30px;
     }
 }

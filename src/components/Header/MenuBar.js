@@ -43,7 +43,7 @@ function MenuBar() {
     }, [userName])
 
     const handelSignOut = () => {
-        
+        console.log(localStorage.getItem("isAuthenticate"));
             localStorage.setItem("authToken", "");
             localStorage.setItem("isAuthenticate",false);
             localStorage.setItem("userName","")

@@ -78,6 +78,7 @@ function Signup() {
                         
                         setSuccessMsg("Signup successful!");
                         localStorage.setItem("isAuthenticate", true);
+                        localStorage.setItem("userName",userData.name);
                     }
                     else{
                         setErrorMsg(user.errors);

@@ -213,8 +213,8 @@
 
 @media (max-width: 768px) {
     .bag-header img {
-        width: 120px;
-        padding: 5px 10px;
+        width: 200px;
+        padding: 0;
       }
     
       .bag-header div {

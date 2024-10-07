@@ -133,8 +133,13 @@
       padding-left: 0;
       margin-top: 20px;
     }
-    .bag-wish-button button{
-        width: 100px;
-        height: 70px;
+    .bag-wish-button{
+        font-size: 10px;
     }
+    .bag-wish-button button{
+        width: 200px;
+       height: 60px;
+    }
+
+    
   }

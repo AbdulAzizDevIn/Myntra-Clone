@@ -117,6 +117,9 @@
     margin-top: 20px;
     margin-right: 7%;
 }
+.dropdown-container div{
+    padding-right: 1%;
+}
 
 .dropdown {
     padding: 10px;
@@ -187,7 +190,7 @@
     }
     .brand-dropdown {
         display: block;
-        width: 100%;
+        width: 90%;
         margin-top: 10px;
     }
 
@@ -195,6 +198,26 @@
         width: 100%;
         padding: 10px;
         font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ad1457;
+    }
+    .dropdown-container{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        padding-left: 2%;
+        width: 90%;
+        margin-top: 10px;
+        font-size: 13px;
+    }
+    .dropdown-container div{
+        padding-left: 4%;
+    }
+    .dropdown-container select{
+        width: 100%;
+        padding: 10px;
+        margin: 10px;
+        font-size: 13px;
         border-radius: 5px;
         border: 1px solid #ad1457;
     }

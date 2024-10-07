@@ -24,7 +24,7 @@ function Login() {
             navigate("/");
         }
 
-    }, [])
+    }, [navigate])
 
     const getUserData = (e) => {
         let value = e.target.value;

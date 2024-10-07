@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { megaDealsData } from "../../constants/data";
 
 function MegaDeals(){
+    const navigate = useNavigate();
     const megaBannerUrl = "https://i.ibb.co/gR879B7/mega-deal.png";
     return(
         <>
@@ -8,7 +10,7 @@ function MegaDeals(){
             <div className="mega-deals-container">
                 {
                     megaDealsData.map(data => (
-                        <img key={data.id} className="mega-deals" src={data.url} alt="" />
+                        <img key={data.id} onClick={()=>navigate("/catalogue")} className="mega-deals" src={data.url} alt="" />
                     ))
                 }
             </div>

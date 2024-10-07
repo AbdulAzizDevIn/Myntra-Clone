@@ -150,7 +150,7 @@ function ProductPage() {
                     </div>
 
                     <div className="bag-wish-button">
-                        <button onClick={handelAddToBag}>{addToBag === "Add To Bag" ? <ShoppingBagOutlinedIcon /> : <ArrowForwardIcon />}{addToBag}</button>
+                        <button style={{flexWrap:"nowrap"}} onClick={handelAddToBag}>{addToBag === "Add To Bag" ? <ShoppingBagOutlinedIcon /> : <ArrowForwardIcon />}{addToBag}</button>
                         <button onClick={handleWishlist} style={{ background: addWishlist === "WISHLISTED" ? "grey" : "white", color:  addWishlist === "WISHLISTED" ? "white" : "black", border: "1px solid grey" }}>
                             {addWishlist === "WISHLISTED" ?
                              <FavoriteIcon style={{ color: "#fd3e6c" }}/>

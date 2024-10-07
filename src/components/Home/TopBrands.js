@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { topBrandsData } from "../../constants/data";
 
 function TopBrands(){
+    const navigate = useNavigate();
     const topBrandsBannerUrl = "https://i.ibb.co/CtVdP1r/brands-banner.png";
     return(
         <>
@@ -8,7 +10,7 @@ function TopBrands(){
             <div className="top-brands-container" >
                 {
                     topBrandsData.map(data => (
-                        <img key={data.id} className="top-brands" src={data.url} alt="" />
+                        <img key={data.id} onClick={()=>navigate("/catalogue")} className="top-brands" src={data.url} alt="" />
                     ))
                 }
             </div>

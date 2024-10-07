@@ -209,8 +209,8 @@ function Catalogue() {
 
       <div className="display-products">
         <div className="dropdown-container">
+          <div>Sort By:</div>
           <select className="dropdown" onChange={handelPriceFilter}>
-            Sort by:
             <option value="option1">Recommended</option>
             <option value="option2">Price: Low To High</option>
             <option value="option3">Price: High To Low</option>

@@ -23,7 +23,7 @@ function Signup() {
         if (isAuthenticate === "true") {
             navigate("/");
         }
-    }, [])
+    }, [navigate])
 
     const getUserData = (e) => {
         let value = e.target.value;

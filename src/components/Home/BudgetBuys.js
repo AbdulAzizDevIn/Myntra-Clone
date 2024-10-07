@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { budgetBuyData } from "../../constants/data";
 
 function BudgetBuys(){
+    const navigate = useNavigate();
     const budgetBannerUrl = "https://i.ibb.co/dt0D3nZ/Budget-buy.png"
     return(
         <>
@@ -8,7 +10,7 @@ function BudgetBuys(){
             <div className="budget-buy-container">
             {
                 budgetBuyData.map(data =>(
-                    <img key={data.id} className="budget-buy" src={data.url} alt="" />
+                    <img key={data.id} onClick={()=>navigate("/catalogue")} className="budget-buy" src={data.url} alt="" />
                 ))
             }
             </div>

@@ -29,3 +29,9 @@
     
     
 }
+@media (max-width : 786px) {
+    .card{
+        max-width: 190px;
+    }
+    
+}

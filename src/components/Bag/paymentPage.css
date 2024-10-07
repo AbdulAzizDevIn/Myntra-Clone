@@ -83,3 +83,12 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  @media (max-width: 768px){
+    .checkout{
+      flex-direction: column;
+    }
+    .payment-container{
+      width: 80%;
+    }
+  }

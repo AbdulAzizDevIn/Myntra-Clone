@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import bagContext from "../../context/bag.context";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -68,6 +69,40 @@ function Bag() {
         }
     }
 
+    const checkoutHandler = async ()=>{
+        const {data:{order}} = await axios.post("https://myntraa-backend-2.onrender.com//api/checkout",{totalAmount})
+        const {data:{key}} = await axios.get("https://myntraa-backend-2.onrender.com/api/getkey")
+        const itemDetails = bagList.map(item => {
+            return {
+                name: item.name,
+                image: item.image,
+            };
+        });
+        
+        const options = {
+            key, 
+            amount: order.amount, 
+            currency: "INR",
+            name: "MYNTRA",
+            description: "test",
+            image:itemDetails.length > 0 ? itemDetails[0].image : '',
+            order_id: order.id, 
+            callback_url: "https://myntraa-backend-2.onrender.com/api/paymentverification",
+            prefill: {
+              name: "Abdul",
+              email: "azizskwwe@gmail.com",
+              contact: "6296055723",
+            },
+            theme: {
+              color: "#F37254",
+            },
+          };
+          const razor = new window.Razorpay(options);
+          razor.open();
+
+    }
+
+
 
 
 
@@ -117,7 +152,7 @@ function Bag() {
                                             <div>
                                                 <img src={item.image} alt={item.name} />
                                             </div>
-                                            <div>
+                                            <div >
                                                 <div style={{ paddingBottom: "5px", fontWeight: "bold" }}>{item.name}</div>
                                                 <p>{item.description}</p>
                                                 <p style={{ fontWeight: "bold" }}>Size: {item.selectSize}</p>
@@ -134,8 +169,8 @@ function Bag() {
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <CloseIcon style={{ cursor: "pointer" }} onClick={() => removeFromBag(item.id)} />
+                                        <div >
+                                            <CloseIcon style={{ cursor: "pointer", }} onClick={() => removeFromBag(item.id)} />
                                         </div>
 
                                     </div>
@@ -164,7 +199,7 @@ function Bag() {
                                 <p style={{ fontWeight: "bold" }}>Total Amount</p>
                                 <p style={{ fontWeight: "bold" }}>₹{totalAmount}</p>
                             </div>
-                            <button onClick={()=> isAuthenticate === "true" ? navigate("/payment"):navigate("/login")}>PLACE ORDER</button>
+                            <button onClick={()=> isAuthenticate === "true" ?checkoutHandler():navigate("/login")}>PLACE ORDER</button>
                         </div>
 
                     </div>

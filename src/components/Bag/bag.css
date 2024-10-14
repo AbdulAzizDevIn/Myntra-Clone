@@ -214,7 +214,9 @@
 @media (max-width: 768px) {
     .bag-header img {
         width: 200px;
+        height: 60px;
         padding: 0;
+        padding-top: 10px;
       }
     
       .bag-header div {
@@ -242,18 +244,9 @@
       }
     
       .bag-card {
-        flex-direction: column;
-        align-items: flex-start;
-        margin: 15px;
+        margin: 1px;
         padding-bottom: 5px;
       }
-    
-      .bag-card img {
-        width: 100%;
-        padding-right: 0;
-        margin-bottom: 10px;
-      }
-    
       .bag-card button {
         margin: 5px 0;
       }

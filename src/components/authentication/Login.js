@@ -59,7 +59,7 @@ function Login() {
         setSubmitButtonDisabled(true)
 
 
-        fetch("https://myntraa-backend-2.onrender.com/api/loginuser", {
+        fetch("http://localhost:5000/api/loginuser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

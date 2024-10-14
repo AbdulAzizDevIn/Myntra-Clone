@@ -36,7 +36,7 @@ function App() {
   const [wishlist, setWishlist] = useState([]);
   
 const fetchProductData =()=>{
-  fetch("https://myntraa-backend-2.onrender.com/api/productsData",{
+  fetch("http://localhost:5000/api/productsData",{
     method:"GET",
     headers:{
       "Content-Type": "application/json"
@@ -92,7 +92,7 @@ useEffect(() => {
       element: <Bag />
     },
     {
-      path: "/payment",
+      path: "/paymentsuccess",
       element: <PaymentPage />
     }
   ])

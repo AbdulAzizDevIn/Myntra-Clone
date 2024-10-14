@@ -70,7 +70,7 @@ function Bag() {
     }
 
     const checkoutHandler = async ()=>{
-        const {data:{order}} = await axios.post("https://myntraa-backend-2.onrender.com//api/checkout",{totalAmount})
+        const {data:{order}} = await axios.post("https://myntraa-backend-2.onrender.com/api/checkout",{totalAmount})
         const {data:{key}} = await axios.get("https://myntraa-backend-2.onrender.com/api/getkey")
         const itemDetails = bagList.map(item => {
             return {

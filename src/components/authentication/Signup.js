@@ -57,7 +57,7 @@ function Signup() {
 
         setSubmitButtonDisabled(true);
 
-        fetch("http://localhost:5000/api/createuser", {
+        fetch("https://myntraa-backend-2.onrender.com/api/createuser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

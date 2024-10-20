@@ -26,9 +26,11 @@ function Catalogue() {
   const { productList } = useContext(productsContext);
   const { filterProducts } = useContext(filterProductsContext);
   const [newFilterProds, setNewFilterProds] = useState(productList);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setNewFilterProds(filterProducts);
+    setLoading(false);
   }, [filterProducts]);
 
   const [gender, setGender] = useState("all");
@@ -36,16 +38,19 @@ function Catalogue() {
   const handelGender = (event) => {
     const value = event.target.value;
     setGender(value);
+    setLoading(true);
     if (value === "all") {
       setNewFilterProds(productList);
     } else {
       const filteredData = productList.filter((item) => item.gender === value);
       setNewFilterProds(filteredData);
     }
+    setLoading(false);
   };
 
   const handelCheckBox = (e) => {
     const { checked, value } = e.target;
+    setLoading(true);
     if (checked) {
       setSelectedBrands((prevSelected) => [...prevSelected, value]);
     } else {
@@ -53,10 +58,12 @@ function Catalogue() {
         prevSelected.filter((brand) => brand !== value)
       );
     }
+    setLoading(false);
   };
 
   const handelPriceFilter = (e) => {
     const value = e.target.value;
+    setLoading(true);
     if (value === "option1") {
       setNewFilterProds(productList);
     } else if (value === "option2") {
@@ -75,9 +82,11 @@ function Catalogue() {
       );
       setNewFilterProds(sortedProducts);
     }
+    setLoading(false);
   };
 
   const handelClearAll = () => {
+    setLoading(true);
     setNewFilterProds(productList);
     setGender("all");
     setSelectedBrands([]);
@@ -85,11 +94,12 @@ function Catalogue() {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
+    setLoading(false);
   };
 
   useEffect(() => {
     let filteredData = productList;
-
+    setLoading(true);
     if (selectedBrands.length > 0) {
       filteredData = productList.filter((item) =>
         selectedBrands.includes(item.name)
@@ -101,6 +111,7 @@ function Catalogue() {
     }
 
     setNewFilterProds(filteredData);
+    setLoading(false);
   }, [selectedBrands, gender, productList]);
 
   return (
@@ -217,11 +228,15 @@ function Catalogue() {
             <option value="option4">Better Discount</option>
           </select>
         </div>
-        <div className="all-card">
-          {newFilterProds.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
-        </div>
+        {loading ? (
+          <div className="loading" style={{color:"red"}}>Please note: Due to free backend hosting, data might take around 50 seconds to load.</div>
+        ) : (
+          <div className="all-card">
+            {newFilterProds.map((product) => {
+              return <ProductCard key={product.id} product={product} />;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
